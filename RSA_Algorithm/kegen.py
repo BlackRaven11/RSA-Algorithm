@@ -14,3 +14,10 @@ with open("private_key.pem" , "wb") as key_file:
         format=serialization.PrivateFormat.PKCS8,
         encryption_algorithm=serialization.NoEncryption()
     ))
+
+with open("public_key.pem" , "wb") as key_file:
+    key_file.write(public_key.public_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.ParameterFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption()
+    ))
