@@ -30,3 +30,6 @@ plaintext = input("Enter the message to encrypt: ")
 #Encrypt the message 
 encrypted_message = encrypt_message(plaintext,public_key)
 
+#Save encrypted message to file 
+with open("encrypted_message.txt","wb") as file:
+    file.write(encrypted_message)
