@@ -8,10 +8,11 @@ def encrypt_message(message , public_key): #encrypting the message using public 
         message.encode(), #the encode() is converting the message into bytes
         #the OAEP : Optimal Asymmtric Encryption Padding is to perform the encryption by scheme
         #which provides probabilistic encryption and enhances security
-        padding.OAEP(   
+        padding.OAEP(  
+            #to configure the OAEP padding. we use SHA256 to hashing(more info --> info.txt)         
             mgf=padding.MGF1(algorithm=hashes.SHA256()),
             algorithm = hashes.SHA256(),
-            label=None
+            label=None #its optional and we don't need it so we set it as None
         )
     )
     return encrypted_message
