@@ -16,3 +16,15 @@ def encrypt_message(message , public_key): #encrypting the message using public 
         )
     )
     return encrypted_message
+
+#load public key from file
+with open("public_key.pem","rb") as key_file:
+    public_key = serialization.load_pem_public_key(
+        key_file.read(),
+        backend=None
+    )
+
+#prompt user for message to encrypt
+plaintext = input("Enter the message to encrypt: ")
+
+
