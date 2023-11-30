@@ -84,7 +84,6 @@ END of the explanation of the reading public key from file
 ---------------------------------------------------------------------------------------------------------------------------------
 Begining of the explanation of the (input from user , encrypting it and writing it into file)
 ---------------------------------------------------------------------------------------------------------------------------------
-
 plaintext = input("Enter the message to encrypt: ")
 ---------------------------------------------------------------------------------------------------------------------------------
 We prompt the user to enter the message they want to encrypt using the input function,
@@ -103,7 +102,6 @@ We open the encrypted_message.txt file in write-binary mode using the open funct
 This file will store the encrypted message.
 Inside the with statement, 
 we call the write method of the file object to write the encrypted message bytes to the file.
-
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of the (input from user , encrypting it and writing it into file)
 ---------------------------------------------------------------------------------------------------------------------------------
