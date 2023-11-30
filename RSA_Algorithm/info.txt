@@ -1,0 +1,38 @@
+def encrypt_message(message, public_key):
+    # Encrypt the message using the public key
+    encrypted_message = public_key.encrypt(
+        message.encode(),
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+    return encrypted_message
+
+---------------------------------------------------------------------------------------------------------------------------------
+Begining of the explanation of the encrypt_message function
+---------------------------------------------------------------------------------------------------------------------------------
+1.The encrypt_message function is defined, which takes two parameters: 
+message (the plaintext message to be encrypted) and public_key (the public key used for encryption).
+
+2.We begin the encryption process using the public_key.encrypt method.
+ This method encrypts the message using the provided public key.
+
+3.The message is encoded using the encode() method to convert it into bytes, 
+as encryption algorithms typically work with bytes rather than strings.
+
+4.The encryption is performed using the OAEP (Optimal Asymmetric Encryption Padding) scheme,
+ which provides probabilistic encryption and enhances security.
+
+To configure the OAEP padding, we create an instance of padding.OAEP and pass it the parameters mgf (mask generation function) 
+and algorithm (hash algorithm used within the OAEP scheme). 
+Here, we use MGF1 with SHA-256 as the mask generation function and SHA-256 as the hash algorithm.
+
+5.The label parameter is set to None since it is optional and not used in this example.
+
+6.Finally, the encrypted message is returned as the result of the encrypt_message function.
+
+---------------------------------------------------------------------------------------------------------------------------------
+END OF EXPLAINING encrypt_message function
+---------------------------------------------------------------------------------------------------------------------------------
