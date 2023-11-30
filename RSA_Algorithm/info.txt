@@ -106,3 +106,91 @@ we call the write method of the file object to write the encrypted message bytes
 END of the explanation of the (input from user , encrypting it and writing it into file)
 ---------------------------------------------------------------------------------------------------------------------------------
 
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+def decrypt_message(encrypted_message, private_key):
+    # Decrypt the message using the private key
+    decrypted_message = private_key.decrypt(
+        encrypted_message,
+        padding.OAEP(
+            mgf=padding.MGF1(algorithm=hashes.SHA256()),
+            algorithm=hashes.SHA256(),
+            label=None
+        )
+    )
+    return decrypted_message.decode()
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of encryption method
+---------------------------------------------------------------------------------------------------------------------------------
+We define the decrypt_message function, which takes two parameters: encrypted_message (the encrypted message to be decrypted) and private_key (the private key used for decryption).
+
+Inside the function, we use the private_key.decrypt method to decrypt the encrypted message using the provided private key.
+
+We pass the encrypted_message to be decrypted and use the same OAEP padding scheme as in the encryption process.
+
+The decrypted message is stored in the decrypted_message variable.
+
+Finally, the decrypted message is returned as the result of the decrypt_message function after decoding it from bytes to a string using the decode() method.
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of encryption method
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+with open("private_key.pem", "rb") as key_file:
+    private_key = serialization.load_pem_private_key(
+        key_file.read(),
+        password=None,
+        backend=None
+    )
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of reading private key from file
+---------------------------------------------------------------------------------------------------------------------------------
+We open the private_key.pem file in read-binary mode using the open function, which contains the serialized private key.
+
+Inside the with statement, we read the contents of the file using the read method of the key_file object.
+
+The serialization.load_pem_private_key function is used to deserialize the private key from the read contents. We pass the serialized key, set the password parameter to None since the private key is not encrypted, and set the backend parameter to None to use the default backend.
+
+The deserialized private key is assigned to the private_key variable.
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of reading private key from file
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+with open("encrypted_message.txt", "rb") as file:
+    encrypted_message = file.read()
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of reading encrypted message from file
+---------------------------------------------------------------------------------------------------------------------------------
+We open the encrypted_message.txt file in read-binary mode using the open function, which contains the encrypted message.
+
+Inside the with statement, we read the contents of the file using the read method of the file object.
+
+The read encrypted message bytes are assigned to the encrypted_message variable.
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of reading encrypted message from file
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+decrypted_message = decrypt_message(encrypted_message, private_key)
+print("Decrypted message:", decrypted_message)
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of sending parameters to the decrypt function and printing it
+---------------------------------------------------------------------------------------------------------------------------------
+The decrypt_message function is called with the encrypted message (encrypted_message) and the private key (private_key) as arguments. The returned decrypted message is assigned to the decrypted_message variable.
+
+The decrypted message is printed to the console using the print function.
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of sending parameters to the decrypt function and printing it
+---------------------------------------------------------------------------------------------------------------------------------
