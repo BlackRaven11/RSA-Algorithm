@@ -27,4 +27,6 @@ with open("public_key.pem","rb") as key_file:
 #prompt user for message to encrypt
 plaintext = input("Enter the message to encrypt: ")
 
+#Encrypt the message 
+encrypted_message = encrypt_message(plaintext,public_key)
 
