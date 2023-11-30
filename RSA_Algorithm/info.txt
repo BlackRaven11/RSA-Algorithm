@@ -58,6 +58,7 @@ END OF EXPLAINING encrypt_message function
 
 
 
+
 ---------------------------------------------------------------------------------------------------------------------------------
 with open("public_key.pem", "rb") as key_file:
     public_key = serialization.load_pem_public_key(
@@ -78,6 +79,7 @@ We pass the serialized key and set the backend parameter to None to use the defa
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of the reading public key from file
 ---------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -106,6 +108,7 @@ we call the write method of the file object to write the encrypted message bytes
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of the (input from user , encrypting it and writing it into file)
 ---------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -145,6 +148,7 @@ END of the explanation of encryption method
 
 
 
+
 ---------------------------------------------------------------------------------------------------------------------------------
 with open("private_key.pem", "rb") as key_file:
     private_key = serialization.load_pem_private_key(
@@ -172,6 +176,7 @@ END of the explanation of reading private key from file
 
 
 
+
 ---------------------------------------------------------------------------------------------------------------------------------
 with open("encrypted_message.txt", "rb") as file:
     encrypted_message = file.read()
@@ -190,6 +195,7 @@ END of the explanation of reading encrypted message from file
 
 
 
+
 ---------------------------------------------------------------------------------------------------------------------------------
 decrypted_message = decrypt_message(encrypted_message, private_key)
 print("Decrypted message:", decrypted_message)
@@ -204,6 +210,7 @@ The returned decrypted message is assigned to the decrypted_message variable.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of sending parameters to the decrypt function and printing it
 ---------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -256,6 +263,7 @@ END of the explanation of returning values as tuples
 
 
 
+
 ---------------------------------------------------------------------------------------------------------------------------------
 private_key_pem = private_key.private_bytes(
     encoding=serialization.Encoding.PEM,
@@ -290,6 +298,7 @@ which represents the SubjectPublicKeyInfo format for public keys.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of private and public keys
 ---------------------------------------------------------------------------------------------------------------------------------
+
 
 
 
