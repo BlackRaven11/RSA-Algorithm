@@ -3,7 +3,7 @@ from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa,padding
 from cryptography.hazmat.primitives import hashes
 
-def encrypt_message(message , public_key):
+def encrypt_message(message , public_key): #encrypting the message using public key
     encrypted_message = public_key.encrypt(
         message.encode(),
         padding.OAEP(
