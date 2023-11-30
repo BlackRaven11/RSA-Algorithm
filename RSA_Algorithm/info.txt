@@ -4,9 +4,9 @@ from cryptography.hazmat.primitives import hashes
 ---------------------------------------------------------------------------------------------------------------------------------
 Begining of the explanation of libraries
 ---------------------------------------------------------------------------------------------------------------------------------
-We import the necessary modules from the cryptography library. 
+1.We import the necessary modules from the cryptography library. 
 serialization provides functions for serializing and deserializing cryptographic objects,
-rsa is used for RSA key generation, 
+2.rsa is used for RSA key generation, 
 and padding and hashes are used for encryption and hashing operations.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of libraries
@@ -35,15 +35,16 @@ Begining of the explanation of the encrypt_message function
 message (the plaintext message to be encrypted) and public_key (the public key used for encryption).
 
 2.We begin the encryption process using the public_key.encrypt method.
- This method encrypts the message using the provided public key.
+This method encrypts the message using the provided public key.
 
 3.The message is encoded using the encode() method to convert it into bytes, 
 as encryption algorithms typically work with bytes rather than strings.
 
 4.The encryption is performed using the OAEP (Optimal Asymmetric Encryption Padding) scheme,
- which provides probabilistic encryption and enhances security.
+which provides probabilistic encryption and enhances security.
 
-To configure the OAEP padding, we create an instance of padding.OAEP and pass it the parameters mgf (mask generation function) 
+To configure the OAEP padding, we create an instance of padding.
+OAEP and pass it the parameters mgf (mask generation function) 
 and algorithm (hash algorithm used within the OAEP scheme). 
 Here, we use MGF1 with SHA-256 as the mask generation function and SHA-256 as the hash algorithm.
 
@@ -66,14 +67,14 @@ with open("public_key.pem", "rb") as key_file:
 ---------------------------------------------------------------------------------------------------------------------------------
 Begining of the explanation of the reding public key from file
 ---------------------------------------------------------------------------------------------------------------------------------
-We open the public_key.pem file in read-binary mode using the open function, which contains the serialized public key.
+1.We open the public_key.pem file in read-binary mode using the open function, which contains the serialized public key.
 
-Inside the with statement, we read the contents of the file using the read method of the key_file object.
+2.Inside the with statement, we read the contents of the file using the read method of the key_file object.
 
-The serialization.load_pem_public_key function is used to deserialize the public key from the read contents. 
+3.The serialization.load_pem_public_key function is used to deserialize the public key from the read contents. 
 We pass the serialized key and set the backend parameter to None to use the default backend.
 
-The deserialized public key is assigned to the public_key variable.
+4.The deserialized public key is assigned to the public_key variable.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of the reading public key from file
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -86,21 +87,21 @@ Begining of the explanation of the (input from user , encrypting it and writing 
 ---------------------------------------------------------------------------------------------------------------------------------
 plaintext = input("Enter the message to encrypt: ")
 ---------------------------------------------------------------------------------------------------------------------------------
-We prompt the user to enter the message they want to encrypt using the input function,
+1.We prompt the user to enter the message they want to encrypt using the input function,
 and the input is stored in the plaintext variable.
 ---------------------------------------------------------------------------------------------------------------------------------
 encrypted_message = encrypt_message(plaintext, public_key)
 ---------------------------------------------------------------------------------------------------------------------------------
-The encrypt_message function is called with the plaintext message (plaintext)
+1.The encrypt_message function is called with the plaintext message (plaintext)
 and the public key (public_key) as arguments. 
-The returned encrypted message is assigned to the encrypted_message variable.
+2.The returned encrypted message is assigned to the encrypted_message variable.
 ---------------------------------------------------------------------------------------------------------------------------------
 with open("encrypted_message.txt", "wb") as file:
     file.write(encrypted_message)
 ---------------------------------------------------------------------------------------------------------------------------------
-We open the encrypted_message.txt file in write-binary mode using the open function.
-This file will store the encrypted message.
-Inside the with statement, 
+1.We open the encrypted_message.txt file in write-binary mode using the open function.
+2.This file will store the encrypted message.
+3.Inside the with statement, 
 we call the write method of the file object to write the encrypted message bytes to the file.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of the (input from user , encrypting it and writing it into file)
@@ -124,15 +125,19 @@ def decrypt_message(encrypted_message, private_key):
 ---------------------------------------------------------------------------------------------------------------------------------
 BEGINING of the explanation of encryption method
 ---------------------------------------------------------------------------------------------------------------------------------
-We define the decrypt_message function, which takes two parameters: encrypted_message (the encrypted message to be decrypted) and private_key (the private key used for decryption).
+1.We define the decrypt_message function, 
+which takes two parameters: encrypted_message (the encrypted message to be decrypted) 
+and private_key (the private key used for decryption).
 
-Inside the function, we use the private_key.decrypt method to decrypt the encrypted message using the provided private key.
+2.Inside the function, 
+we use the private_key.decrypt method to decrypt the encrypted message using the provided private key.
 
-We pass the encrypted_message to be decrypted and use the same OAEP padding scheme as in the encryption process.
+3.We pass the encrypted_message to be decrypted and use the same OAEP padding scheme as in the encryption process.
 
-The decrypted message is stored in the decrypted_message variable.
+4.The decrypted message is stored in the decrypted_message variable.
 
-Finally, the decrypted message is returned as the result of the decrypt_message function after decoding it from bytes to a string using the decode() method.
+5.Finally, the decrypted message is returned as the result of the decrypt_message function 
+after decoding it from bytes to a string using the decode() method.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of encryption method
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -150,13 +155,16 @@ with open("private_key.pem", "rb") as key_file:
 ---------------------------------------------------------------------------------------------------------------------------------
 BEGINING of the explanation of reading private key from file
 ---------------------------------------------------------------------------------------------------------------------------------
-We open the private_key.pem file in read-binary mode using the open function, which contains the serialized private key.
+1.We open the private_key.pem file in read-binary mode using the open function,
+which contains the serialized private key.
 
-Inside the with statement, we read the contents of the file using the read method of the key_file object.
+2.Inside the with statement, we read the contents of the file using the read method of the key_file object.
 
-The serialization.load_pem_private_key function is used to deserialize the private key from the read contents. We pass the serialized key, set the password parameter to None since the private key is not encrypted, and set the backend parameter to None to use the default backend.
+3.The serialization.load_pem_private_key function is used to deserialize the private key from the read contents. 
+We pass the serialized key, set the password parameter to None since the private key is not encrypted,
+and set the backend parameter to None to use the default backend.
 
-The deserialized private key is assigned to the private_key variable.
+4.The deserialized private key is assigned to the private_key variable.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of reading private key from file
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -170,11 +178,11 @@ with open("encrypted_message.txt", "rb") as file:
 ---------------------------------------------------------------------------------------------------------------------------------
 BEGINING of the explanation of reading encrypted message from file
 ---------------------------------------------------------------------------------------------------------------------------------
-We open the encrypted_message.txt file in read-binary mode using the open function, which contains the encrypted message.
+1.We open the encrypted_message.txt file in read-binary mode using the open function, which contains the encrypted message.
 
-Inside the with statement, we read the contents of the file using the read method of the file object.
+2.Inside the with statement, we read the contents of the file using the read method of the file object.
 
-The read encrypted message bytes are assigned to the encrypted_message variable.
+3.The read encrypted message bytes are assigned to the encrypted_message variable.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of reading encrypted message from file
 ---------------------------------------------------------------------------------------------------------------------------------
@@ -188,9 +196,124 @@ print("Decrypted message:", decrypted_message)
 ---------------------------------------------------------------------------------------------------------------------------------
 BEGINING of the explanation of sending parameters to the decrypt function and printing it
 ---------------------------------------------------------------------------------------------------------------------------------
-The decrypt_message function is called with the encrypted message (encrypted_message) and the private key (private_key) as arguments. The returned decrypted message is assigned to the decrypted_message variable.
+1.The decrypt_message function is called with the encrypted message (encrypted_message) 
+and the private key (private_key) as arguments. 
+The returned decrypted message is assigned to the decrypted_message variable.
 
-The decrypted message is printed to the console using the print function.
+2.The decrypted message is printed to the console using the print function.
 ---------------------------------------------------------------------------------------------------------------------------------
 END of the explanation of sending parameters to the decrypt function and printing it
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+def generate_key_pair():
+    # Generate RSA key pair
+    private_key = rsa.generate_private_key(
+        public_exponent=65537,
+        key_size=2048
+    )
+    public_key = private_key.public_key()
+    return private_key, public_key
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of generating key pair
+---------------------------------------------------------------------------------------------------------------------------------
+1.We define the generate_key_pair function, which generates an RSA key pair.
+
+2.Inside the function, we use the rsa.generate_private_key function to generate a private key.
+
+3.We specify the public_exponent as 65537, which is a commonly used value for RSA.
+
+4.The key_size is set to 2048 bits, which is a widely accepted key size for RSA.
+
+5.The generated private key is assigned to the private_key variable.
+
+6.We use the private_key.public_key() method to obtain the corresponding public key.
+
+7.Both the private key and public key are returned as a tuple (private_key, public_key).
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of generating key pair
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+private_key, public_key = generate_key_pair()
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of returning values as tupels
+---------------------------------------------------------------------------------------------------------------------------------
+1.We call the generate_key_pair function, which returns the private key and public key as a tuple.
+
+2.The values are unpacked and assigned to the variables private_key and public_key respectively.
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of returning values as tuples
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+private_key_pem = private_key.private_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PrivateFormat.PKCS8,
+    encryption_algorithm=serialization.NoEncryption()
+)
+public_key_pem = public_key.public_bytes(
+    encoding=serialization.Encoding.PEM,
+    format=serialization.PublicFormat.SubjectPublicKeyInfo
+)
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of private and public keys
+---------------------------------------------------------------------------------------------------------------------------------
+1.We use the private_key.private_bytes method to serialize the private key into PEM format.
+
+2.We specify the encoding parameter as serialization.Encoding.PEM to indicate that the key should be encoded in PEM format.
+
+3.The format parameter is set to serialization.PrivateFormat.PKCS8, which represents the PKCS#8 format for private keys.
+
+4.Since we are not encrypting the private key, we use serialization.NoEncryption() as the encryption_algorithm.
+
+5.The serialized private key bytes are assigned to the private_key_pem variable.
+
+6.We use the public_key.public_bytes method to serialize the public key into PEM format.
+
+7.We specify the encoding parameter as serialization.Encoding.PEM to indicate that the key should be encoded in PEM format.
+
+8.The format parameter is set to serialization.PublicFormat.SubjectPublicKeyInfo, 
+which represents the SubjectPublicKeyInfo format for public keys.
+
+9.The serialized public key bytes are assigned to the public_key_pem variable.
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of private and public keys
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+with open("private_key.pem", "wb") as private_key_file:
+    private_key_file.write(private_key_pem)
+
+with open("public_key.pem", "wb") as public_key_file:
+    public_key_file.write(public_key_pem)
+---------------------------------------------------------------------------------------------------------------------------------
+BEGINING of the explanation of writing keys into files
+---------------------------------------------------------------------------------------------------------------------------------
+1.We open the private_key.pem file in write-binary mode using the open function.
+This file will store the serialized private key.
+
+2.Inside the with statement,
+we call the write method of the private_key_file object to write the serialized private key bytes to the file.
+
+3.We open the public_key.pem file in write-binary mode using the open function.
+This file will store the serialized public key.
+
+4.Inside the with statement, we call the write method of the public_key_file object to
+write the serialized public key bytes to the file.
+---------------------------------------------------------------------------------------------------------------------------------
+END of the explanation of writing keys into files
 ---------------------------------------------------------------------------------------------------------------------------------
