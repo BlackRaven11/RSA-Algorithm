@@ -1,0 +1,48 @@
+Implementation of RSA Algorithm without External Libraries
+This document provides a brief explanation of a simplified implementation of the RSA algorithm 
+without using any external libraries. 
+The code demonstrates the basic concepts of RSA encryption and decryption.
+
+RSA Algorithm Overview
+RSA (Rivest-Shamir-Adleman) is a widely used asymmetric encryption algorithm.
+It involves the use of a pair of keys: a public key for encryption and a private key for decryption.
+The RSA algorithm relies on the computational difficulty of factoring large prime numbers.
+
+Code Explanation
+The provided code consists of three main parts:
+
+RSA Key Generation: The generate_rsa_key_pair function generates an RSA key pair.
+It selects two prime numbers, p and q, calculates the modulus N (which is the product of p and q),
+and determines Euler's totient function phi.
+Then, it chooses a public exponent e and calculates the private exponent d such that (d * e) % phi = 1.
+The function returns the public key (e, modulus) and the private key (d, modulus).
+
+RSA Encryption: The encrypt function takes a message and the public key as input.
+It converts each character of the message into its corresponding ASCII value and encrypts it using modular exponentiation.
+The encrypted message is stored as a list of numbers representing the encrypted ASCII values.
+
+RSA Decryption: The decrypt function takes the encrypted message and the private key as input.
+It performs modular exponentiation on each element of the encrypted message using the private exponent d and the modulus N.
+The decrypted ASCII values are converted back into characters, and the original message is reconstructed.
+
+Example Usage
+In the example usage section of the code, the following steps are executed:
+
+The message "Hello, RSA!" is defined.
+The generate_rsa_key_pair function is called to obtain the public key and private key.
+The encrypt function is called with the message and public key as arguments, returning the encrypted message.
+The decrypt function is called with the encrypted message and private key as arguments, returning the decrypted message.
+The original message, encrypted message, and decrypted message are printed to the console.
+Security Considerations
+It is important to note that the provided code is a simplified implementation for educational purposes 
+and may not possess the same level of security as professional RSA implementations.
+Real-world RSA implementations incorporate additional security measures,
+such as padding schemes and prime number generation techniques, to enhance the security and efficiency of the algorithm.
+
+Conclusion
+The code presented in this document demonstrates 
+a simplified implementation of the RSA algorithm without using external libraries.
+It showcases the key aspects of RSA key generation, encryption, and decryption.
+By understanding this basic implementation,
+developers can gain insights into the inner workings of RSA encryption
+and can build upon it for more advanced cryptographic applications.
