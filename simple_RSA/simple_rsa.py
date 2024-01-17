@@ -37,7 +37,7 @@ def decrypt(encrypted_message, private_key):
 
 
 # Example usage
-message = "Hello, RSA!"
+message = input('enter a message to encrypt: ') 
 public_key, private_key = generate_rsa_key_pair()
 
 encrypted_message = encrypt(message, public_key)
